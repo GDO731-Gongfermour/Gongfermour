@@ -9,14 +9,10 @@ public class PlayerInteract : MonoBehaviour
     
     void Update()
     {
-        InputAction interact = InputSystem.actions.FindAction("Interact");
-        if (interact.triggered)
+        RaycastHit hit;
+        if (Physics.Raycast(defaultCamera.transform.position, defaultCamera.transform.TransformDirection(Vector3.forward * 10f), out hit, 4f, ~player))
         {
-            RaycastHit hit;
-            if (Physics.Raycast(defaultCamera.transform.position, defaultCamera.transform.TransformDirection(Vector3.forward * 10f), out hit, 2f, ~player))
-            {
-                InteractWithObject(hit.collider.gameObject);
-            }
+            InteractWithObject(hit.collider.gameObject);
         }
     }
 
