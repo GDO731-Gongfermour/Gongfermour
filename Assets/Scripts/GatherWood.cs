@@ -15,7 +15,7 @@ public class GatherWood : MonoBehaviour, IInteractable
         InputAction interactAction = InputSystem.actions.FindAction("Interact");
         if (interactAction.triggered)
         {
-            playerAttributes.AddWood(1);
+            playerAttributes.AddResource("wood", 1);
             Destroy(this.gameObject);
         }
     }

@@ -1,34 +1,43 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
 public class PlayerAttributes : MonoBehaviour
 {
-    private int woodQuantity;
+    private Dictionary<string, int> resources;
 
     public TMP_Text woodText;
 
     void Start()
     {
-        woodQuantity = 0;
+        if (resources == null)
+        {
+            resources = new Dictionary<string, int>()
+            {
+                {"wood", 0 },
+                {"fuel", 0 }
+            };
+        }
     }
 
-    public int GetWoodQuantity()
+    public int GetResourceQuantity(string resourceType)
     {
-        return woodQuantity;
+        return resources[resourceType];
     }
 
-    public void AddWood(int woodToAdd)
+    public void AddResource(string resourceType, int resourceQuantity)
     {
-        woodQuantity += woodToAdd;
+        resources[resourceType] += resourceQuantity;
     }
 
-    public void RemoveWood(int woodToRemove)
+    public void RemoveResource(string resourceType, int resourceQuantity)
     {
-        woodQuantity -= woodToRemove;
+        resources[resourceType] -= resourceQuantity;
     }
 
     private void Update()
     {
-        woodText.text = woodQuantity.ToString();
+        woodText.text = resources["wood"].ToString();
     }
 }
